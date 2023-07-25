@@ -1,0 +1,14 @@
+.box-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.back-img{
+    position: absolute;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur();
+}

@@ -1,6 +1,6 @@
 import { Container } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import userService from "../_services/userService";
+import dentistService from "../_services/dentistService";
 import { useSelector } from "react-redux";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -33,13 +33,13 @@ import { red } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 //---------------------------------------------------------------------------------------------
 
-export default function ProfilePage() {
+export default function ProfileDentistPage() {
   // ----------------------------- hooks -----------------------------------------
 
   const token = useSelector((state) => state.auth.token);
   const [profile, setProfile] = useState({});
   const [appointments, setAppointments] = useState([]);
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,25 +49,25 @@ export default function ProfilePage() {
 
   const getProfile = async () => {
     try {
-      const data = await userService.getMyProfile(token);
+      const data = await dentistService.getMyProfile(token);
       setProfile(data);
       console.log(data);
     } catch (error) {
       console.log(error);
     } finally {
-      setisLoading(false);
+      setIsLoading(false);
     }
   };
 
   const getMyAppointments = async () => {
     try {
-      const data = await userService.getMyAppointments(token);
+      const data = await dentistService.getMyAppointments(token);
       setAppointments(data.results.appointments);
       console.log(data.results.appointments);
     } catch (error) {
       console.log(error);
     } finally {
-      setisLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -77,19 +77,19 @@ export default function ProfilePage() {
   const handleDelteAppointment = async (value) => {
     try {
       const id = { id: value };
-      await userService.deleteAppointment(token, id);
-      const data = await userService.getMyAppointments(token);
+      await dentistService.deleteAppointment(token, id);
+      const data = await dentistService.getMyAppointments(token);
       setAppointments(data.results.appointments);
     } catch (error) {
       console.log(error);
     } finally {
-      setisLoading(false);
+      setIsLoading(false);
     }
   };
 
   // Edit profile
-  const handleEditProfile = async () => {
-    navigate("/profile-edit");
+  const handleEditProfile = async (profile) => {
+    profile, navigate("/profile-edit");
   };
 
   // ---------------------------------- return ----------------------------------------------------
@@ -168,8 +168,7 @@ export default function ProfilePage() {
               <TableHead>
                 <TableRow>
                   <TableCell align="left">ID</TableCell>
-                  <TableCell align="left">Dentist</TableCell>
-                  <TableCell align="left">Specialization</TableCell>
+                  <TableCell align="left">Patient</TableCell>
                   <TableCell align="left">Date</TableCell>
                   <TableCell align="left">Time</TableCell>
                   <TableCell align="left">Email</TableCell>
@@ -186,16 +185,13 @@ export default function ProfilePage() {
                       {u.id}
                     </TableCell>
                     <TableCell align="left">
-                      {u.dentist.user.user_name} {u.dentist.user.user_last_name}
-                    </TableCell>
-                    <TableCell align="left">
-                      {u.dentist.specialization.specialization_name}
+                      {u.patient.user.user_name} {u.patient.user.user_last_name}
                     </TableCell>
                     <TableCell align="left">{u.date}</TableCell>
-                    <TableCell align="left">{u.time} h</TableCell>
-                    <TableCell align="left">{u.dentist.user.email}</TableCell>
+                    <TableCell align="left">{u.time}h</TableCell>
+                    <TableCell align="left">{u.patient.user.email}</TableCell>
                     <TableCell align="left">
-                      {u.dentist.user.phone_number}
+                      {u.patient.user.phone_number}
                     </TableCell>
                     <TableCell align="left">
                       <Button style={{ Align: "center", color: red }}>

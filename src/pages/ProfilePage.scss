@@ -21,14 +21,26 @@
         left: 50%;
         transform: translate(-50%, -33%); 
     }
+    .edit-button{
+        right: 250px;
+        display: flex;
+        justify-content: flex-end;
+        text-align: right;
+        padding-bottom: 50px;
+        padding-right: 50px;
+    
+    }
+    .cabecera{
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 250px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-radius: 20px 20px 0px 0px;
+    }
+    
 }
 
-.cabecera{
-    background-image: url(../../heading/heading.jpg);
-    background-position: center;
-    height: 250px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border-radius: 20px 20px 0px 0px;
-}
+

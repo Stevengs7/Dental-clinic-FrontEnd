@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // @MUI
@@ -14,7 +14,6 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import SchoolTwoToneIcon from "@mui/icons-material/SchoolTwoTone";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Divider } from "@mui/material";
 import BuildTwoToneIcon from "@mui/icons-material/BuildTwoTone";
@@ -28,22 +27,6 @@ import { updateAuthStateLogout } from "../../../features/authentication/updateAu
 
 // ----------------------------------------------------------------------
 
-const handleLogout = () => {
-  console.log("logout");
-  updateAuthStateLogout();
-};
-
-const pages = [
-  { title: "Home", path: "/" },
-  { title: "Our Dentist", path: "/dentist" },
-  { title: "About us", path: "/about" },
-];
-
-const settings = [
-  { title: "Profile", path: "/profile", handle: null },
-  { title: "Logout", path: "/", handle: handleLogout },
-];
-
 // ----------------------------------------------------------------------
 
 function ResponsiveAppBar() {
@@ -53,6 +36,27 @@ function ResponsiveAppBar() {
   const userName = useSelector((state) => state.auth.userInfo.name);
   const userRole = useSelector((state) => state.auth.userInfo.role);
   const isAdmin = userRole == "admin";
+
+  const handleLogout = () => {
+    console.log("logout");
+    updateAuthStateLogout();
+  };
+
+  const pathProfile = {
+    dentist: "/dentist-profile",
+    patient: "/profile",
+  };
+
+  const pages = [
+    { title: "Home", path: "/" },
+    { title: "Our Dentist", path: "/dentist" },
+    { title: "About us", path: "/about" },
+  ];
+
+  const settings = [
+    { title: "Profile", path: pathProfile[userRole], handle: null },
+    { title: "Logout", path: "/", handle: handleLogout },
+  ];
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -77,27 +81,6 @@ function ResponsiveAppBar() {
     >
       <Container>
         <Toolbar disableGutters>
-          <AirlineSeatFlatAngledRoundedIcon
-            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-          />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Dental Clinic
-          </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -152,13 +135,13 @@ function ResponsiveAppBar() {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: "Roboto",
               fontWeight: 700,
-              letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
           ></Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <NavLink
@@ -180,14 +163,12 @@ function ResponsiveAppBar() {
             <Box sx={{ flexGrow: 0, display: { xs: "flex" } }}>
               <NavLink style={{ textDecoration: "none" }} to="/login">
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   startIcon={<LoginTwoToneIcon />}
                   sx={{
                     my: 2,
                     mr: 1,
                     color: "white",
-
-                    backgroundColor: "#3F51B5",
                   }}
                 >
                   Login
@@ -196,12 +177,11 @@ function ResponsiveAppBar() {
 
               <NavLink style={{ textDecoration: "none" }} to="/register">
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   startIcon={<AppRegistrationTwoToneIcon />}
                   sx={{
                     my: 2,
                     color: "white",
-                    backgroundColor: "#3F51B5",
                   }}
                 >
                   Register

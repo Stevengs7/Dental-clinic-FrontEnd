@@ -1,17 +1,19 @@
-import { Typography } from "@mui/material";
-import { Container } from "@mui/system";
+import { Box, Typography } from "@mui/material";
 import "./HomePage.scss";
 export default function HomePage() {
   return (
     <>
-      <div className="home-box">
-        <Container sx={{ mt: 5 }}>
-          <div>
-            <Typography>Home</Typography>
-            <Typography>Welcome to Dentist Clinic</Typography>
-          </div>
-        </Container>
-      </div>
+      <Box className="logo"></Box>
+      <div className="home-box"></div>
+      <Typography
+        className="text-home"
+        variant="h3"
+        align="center"
+        fontWeight={400}
+        sx={{ color: "#1976d1" }}
+      >
+        Welcome!
+      </Typography>
     </>
   );
 }
