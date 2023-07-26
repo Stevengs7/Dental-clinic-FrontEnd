@@ -72,11 +72,29 @@ userService.deleteAppointment = async (token, value) => {
 
 // Create Appointment ----------------------------------------------------
 
-userService.CreateAppointment = async (token, value) => {
+userService.CreateAppointment = async (token, appointment) => {
   const options = {
     method: "POST",
     url: `${global.BASE_API_URL}/api/users/new-appointment`,
-    data: value,
+    data: appointment,
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  //await sleep(2000); // TODO
+  const response = await axios.request(options);
+  return response.data;
+};
+
+// ====================== Update Appointment =======================================================
+
+userService.updateAppointment = async (token, appointment, id) => {
+  const options = {
+    method: "PUT",
+    url: `${global.BASE_API_URL}/api/users/update-appointment/${id}`,
+    data: appointment,
+    params: { id },
     headers: {
       accept: "application/json",
       Authorization: `Bearer ${token}`,

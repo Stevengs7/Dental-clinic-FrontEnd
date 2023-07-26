@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import userService from "../_services/userService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -88,8 +88,7 @@ function getTimeStyles(time, personTime, theme) {
         : theme.typography.fontWeightMedium,
   };
 }
-
-export default function CreateAppointment() {
+export default function UpdateAppointmentPage() {
   const token = useSelector((state) => state.auth.token);
   const userId = useSelector((state) => state.auth.userInfo.id);
   const [dentist, setDentist] = useState([]);
@@ -103,6 +102,7 @@ export default function CreateAppointment() {
   const [personName, setPersonName] = React.useState([]);
   const [personTime, setPersonTime] = React.useState([]);
   const [value, setValue] = React.useState(dayjs(""));
+  const { id } = useParams();
 
   const handleNameChange = (event) => {
     const {
@@ -134,7 +134,6 @@ export default function CreateAppointment() {
       const data = await userService.getAllDentists(token, usersPage);
       setDentist(data.results.dentists);
       console.log(data.results.dentists);
-      console.log(userId);
     } catch (error) {
       console.log(error);
     } finally {
@@ -152,27 +151,25 @@ export default function CreateAppointment() {
       date: data.get("date"),
       time: data.get("time"),
     };
-    createNewAppointment(appointment);
+    updateAppointment(appointment, id);
   };
 
-  const createNewAppointment = async (appointment) => {
+  const updateAppointment = async (appointment, id) => {
     try {
-      const newAppointment = await userService.CreateAppointment(
+      const updateChanges = await userService.updateAppointment(
         token,
-        appointment
+        appointment,
+        id
       );
-      console.log(newAppointment);
       navigate("/profile");
-    } catch (error) {
-      console.log(error.response.data.message);
-    }
+    } catch (error) {}
   };
 
   return (
     <>
       <div>
         <Typography variant="h3" align="center" fontWeight={400} sx={{ m: 15 }}>
-          Create a new appoinment with one of our professionals
+          Modify your appointment, remember to save the changes.
         </Typography>
         <Box
           component="form"

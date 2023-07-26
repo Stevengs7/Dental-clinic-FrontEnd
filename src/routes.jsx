@@ -13,6 +13,7 @@ import CreateAppointment from "./pages/CreateAppointment";
 import AdminPage from "./pages/AdminPage";
 import AboutPage from "./pages/AboutPage";
 import Page404 from "./pages/Page404";
+import UpdateAppointmentPage from "./pages/UpdateAppointmentPage";
 
 export default function AppRouter() {
   return (
@@ -26,6 +27,10 @@ export default function AppRouter() {
         <Route path="/dentist-profile" element={<ProfileDentistPage />} />
         <Route path="/profile-edit" element={<ProfileEdit />} />
         <Route path="/create-appointment" element={<CreateAppointment />} />
+        <Route
+          path="/update-appointment/:id"
+          element={<UpdateAppointmentPage />}
+        />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/404" element={<Page404 />} />

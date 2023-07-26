@@ -87,9 +87,24 @@ export default function ProfilePage() {
     }
   };
 
+  // edit appointment
+  const handleEditAppointment = async (id) => {
+    try {
+      navigate(`/update-appointment/${id}`);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setisLoading(false);
+    }
+  };
+
   // Edit profile
   const handleEditProfile = async () => {
     navigate("/profile-edit");
+  };
+
+  const handleCreateAppointment = async () => {
+    navigate("/create-appointment");
   };
 
   // ---------------------------------- return ----------------------------------------------------
@@ -146,14 +161,22 @@ export default function ProfilePage() {
                     </ListItem>
                   </List>
                 </Box>
-                <Box className={"edit-button"}>
+                <Box className={"edit-button"} sx={{ gap: 2 }}>
                   <Button
                     variant="contained"
                     size="small"
                     startIcon={<CreateRoundedIcon />}
                     onClick={() => handleEditProfile(profile)}
                   >
-                    Edit
+                    Edit profile
+                  </Button>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    startIcon={<CreateRoundedIcon />}
+                    onClick={handleCreateAppointment}
+                  >
+                    New Appointment
                   </Button>
                 </Box>
               </Box>
@@ -196,6 +219,13 @@ export default function ProfilePage() {
                     <TableCell align="left">{u.dentist.user.email}</TableCell>
                     <TableCell align="left">
                       {u.dentist.user.phone_number}
+                    </TableCell>
+                    <TableCell align="left">
+                      <Button style={{ Align: "center" }}>
+                        <CreateRoundedIcon
+                          onClick={() => handleEditAppointment(u.id)}
+                        />
+                      </Button>
                     </TableCell>
                     <TableCell align="left">
                       <Button style={{ Align: "center", color: red }}>
