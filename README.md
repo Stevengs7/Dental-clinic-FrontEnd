@@ -7,7 +7,8 @@
     <li><a href="#acerca-de-este-proyecto-🔎">Acerca de este proyecto</a></li>
     <li><a href="#stack">Stack</a></li>
     <li><a href="#instalación-en-local">Instalación</a></li>
-    <!-- <li><a href="#vistas">Vistas</a></li> -->
+    <li><a href="#vistas">Vistas</a></li>
+    <li><a href="#credenciales">Credenciales</a></li>
     <li><a href="#futuras-funcionalidades">Futuras funcionalidades</a></li>
     <li><a href="#webgrafia">Webgrafia</a></li>
     <li><a href="#contacto">Contacto</a></li>
@@ -48,26 +49,21 @@ Frontend de una clínica dental desarrolado en REACT. Los usuarios (Paciente, De
 ## Vistas
 
 Home
-
 <img src="./public/assets/readme/home.png">
 
 Register
-
 <img src="./public/assets/readme/register.png">
 
 Login
 <img src="./public/assets/readme/login.png">
 
 Patient profile
-
 <img src="./public/assets/readme/patient_profile.png">
 
 Dentist profile
-
 <img src="./public/assets/readme/dentist_profile.png">
 
 Admin panel
-
 <img src="./public/assets/readme/admin_panel.png">
 
 ## Credenciales
@@ -91,7 +87,7 @@ Admin panel
 
 - Como admin
 
-      jane@doe.com
+      admin@admin.com
 
 </datails>
 
