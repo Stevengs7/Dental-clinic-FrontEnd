@@ -14,6 +14,7 @@ import AdminPage from "./pages/AdminPage";
 import AboutPage from "./pages/AboutPage";
 import Page404 from "./pages/Page404";
 import UpdateAppointmentPage from "./pages/UpdateAppointmentPage";
+import FindAppointmentPage from "./pages/FindAppointmentPage";
 
 export default function AppRouter() {
   return (
@@ -27,6 +28,7 @@ export default function AppRouter() {
         <Route path="/dentist-profile" element={<ProfileDentistPage />} />
         <Route path="/profile-edit" element={<ProfileEdit />} />
         <Route path="/create-appointment" element={<CreateAppointment />} />
+        <Route path="/search-appointment" element={<FindAppointmentPage />} />
         <Route
           path="/update-appointment/:id"
           element={<UpdateAppointmentPage />}

@@ -21,6 +21,18 @@ import {
 } from "@mui/material";
 import "./ProfilePage.scss";
 
+//------------------------------------DIALOG WINDOW---------------------------------------------------------
+
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 //------------------------------------ICONS---------------------------------------------------------
 
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
@@ -31,7 +43,6 @@ import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 import { format } from "date-fns";
 import { red } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
-//---------------------------------------------------------------------------------------------
 
 export default function ProfilePage() {
   // ----------------------------- hooks -----------------------------------------
@@ -40,6 +51,8 @@ export default function ProfilePage() {
   const [profile, setProfile] = useState({});
   const [appointments, setAppointments] = useState([]);
   const [isLoading, setisLoading] = useState(true);
+  const [open, setOpen] = React.useState(false);
+  const [deleteId, setDeleteId] = React.useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -71,15 +84,26 @@ export default function ProfilePage() {
     }
   };
 
-  //handle --------------------------------------------------------------------------------------------------
+  // ================================ DIALOG WINDOW ===========================================
+
+  const handleClickOpen = (id) => {
+    setOpen(true);
+    setDeleteId(id);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  // ============================= HANDLES ==============================================
 
   // appointment delete
-  const handleDelteAppointment = async (value) => {
+  const handleDeleteAppointment = async () => {
     try {
-      const id = { id: value };
+      const id = { id: deleteId };
       await userService.deleteAppointment(token, id);
       const data = await userService.getMyAppointments(token);
       setAppointments(data.results.appointments);
+      setOpen(false);
     } catch (error) {
       console.log(error);
     } finally {
@@ -87,7 +111,7 @@ export default function ProfilePage() {
     }
   };
 
-  // edit appointment
+  // ============================= EDIT APPOINTMENT ==============================================
   const handleEditAppointment = async (id) => {
     try {
       navigate(`/update-appointment/${id}`);
@@ -182,11 +206,13 @@ export default function ProfilePage() {
               </Box>
             </Grid>
           </React.Fragment>
+
           {/* tabla appointments*/}
           <Typography sx={{ mt: 5 }} component={"h5"} variant="h5" gutterBottom>
             My appointments
           </Typography>
           <TableContainer component={Paper} sx={{ mb: 10 }}>
+            {/*  */}
             <Table sx={{ minWidth: 600 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
@@ -231,7 +257,7 @@ export default function ProfilePage() {
                       <Button style={{ Align: "center", color: red }}>
                         <DeleteForeverRoundedIcon
                           sx={{ color: "red" }}
-                          onClick={() => handleDelteAppointment(u.id)}
+                          onClick={() => handleClickOpen(u.id)}
                         />
                       </Button>
                     </TableCell>
@@ -240,6 +266,30 @@ export default function ProfilePage() {
               </TableBody>
             </Table>
           </TableContainer>
+
+          {/* DIALOG */}
+          <div>
+            <Dialog
+              open={open}
+              TransitionComponent={Transition}
+              keepMounted
+              onClose={handleClose}
+              aria-describedby="alert-dialog-slide-description"
+            >
+              <DialogTitle>{`Are you sure to delte your appointment?`}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-slide-description">
+                  Once deleted this change cannot be reversed.
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>Disagree</Button>
+                <Button onClick={(handleClose, handleDeleteAppointment)}>
+                  Agree
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </div>
         </Container>
       ) : (
         <Typography>Loading...</Typography>
