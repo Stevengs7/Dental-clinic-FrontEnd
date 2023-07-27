@@ -77,33 +77,32 @@ Admin panel
 <summary>credenciales</summary>
 - AUTH
 
+- Contraseña para todos los usuarios
+
+      12345678
+
 - Como paciente
 
       steven@garzon.com
-      12345678
 
 - Como dentista
 
       jane@doe.com
-      12345678
 
 - Como admin
 
       jane@doe.com
-      12345678
 
-    </datails>
+</datails>
 
 ## Futuras funcionalidades
 
-✅ Buscar citas por id o nombre de paciente.
-⬜ Añadir crear citas para los usuarios con rol de Medico
-⬜ Crear un perfil decicado al admin con funciones unicas.
+✅ Buscar citas por id o nombre de paciente.</br>
+⬜ Añadir crear citas para los usuarios con rol de Medico</br>
+⬜ Crear un perfil decicado al admin con funciones unicas.</br>
 ⬜ ...
 
 ## Webgrafia:
-
-Para conseguir mi objetivo he recopilado información de:
 
 - https://mui.com/material-ui/getting-started/
 
