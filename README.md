@@ -49,26 +49,26 @@ Frontend de una clínica dental desarrolado en REACT. Los usuarios (Paciente, De
 
 Home
 
-<img src="../public/assets/readme/home.png">
+<img src="./public/assets/readme/home.png">
 
 Register
 
-<img src="../public/assets/readme/register.png">
+<img src="./public/assets/readme/register.png">
 
 Login
-<img src="../public/assets/readme/login.png">
+<img src="./public/assets/readme/login.png">
 
 Patient profile
 
-<img src="../public/assets/readme/patient_profile.png">
+<img src="./public/assets/readme/patient_profile.png">
 
 Dentist profile
 
-<img src="../public/assets/readme/dentist_profile.png">
+<img src="./public/assets/readme/dentist_profile.png">
 
 Admin panel
 
-<img src="../public/assets/readme/admin_panel.png">
+<img src="./public/assets/readme/admin_panel.png">
 
 ## Credenciales
 
