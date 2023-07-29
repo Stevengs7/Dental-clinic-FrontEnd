@@ -57,7 +57,7 @@ userService.getMyAppointments = async (token) => {
 
 userService.appointmentById = async (token, id) => {
   const options = {
-    method: "GET",
+    method: "POST",
     url: `${global.BASE_API_URL}/api/users/one-appointment`,
     data: id,
     headers: {

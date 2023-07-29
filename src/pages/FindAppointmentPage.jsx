@@ -7,7 +7,7 @@ import userService from "../_services/userService";
 export default function FindAppointmentPage() {
   const token = useSelector((state) => state.auth.token);
   const [idAppointment, setIdAppointment] = useState();
-  const [appointment, setAppointment] = useState();
+  const [appointment, setAppointment] = useState({});
   const [isLoading, setisLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -18,53 +18,25 @@ export default function FindAppointmentPage() {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
       const appointmentId = +data.get("appointment");
-      console.log(appointmentId);
-      setIdAppointment(appointmentId);
-      const id = { id: idAppointment };
+      getMyAppointment(appointmentId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getMyAppointment = async (appointmentId) => {
+    try {
+      const id = { id: appointmentId };
       console.log(id);
-      const res = await userService.appointmentById(token, id);
-      setAppointment(res);
-      console.log(appointment);
+      const myAppointment = await userService.appointmentById(token, id);
+      setAppointment(myAppointment);
+      console.log(myAppointment);
     } catch (error) {
       console.log(error);
     } finally {
       setisLoading(false);
     }
   };
-
-  /*   const handleSubmit = async (event) => {
-    try {
-      event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      const searchAppointment = {
-        id: +data.get("appointment"),
-      };
-      setIdAppointment(searchAppointment);
-      console.log(idAppointment);
-      const id = {
-        id: idAppointment,
-      };
-      const res = await userService.getOneAppointmentById(token, id);
-      setAppointment(res);
-      console.log(appointment);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setisLoading(false);
-    }
-  }; */
-
-  /*   const getMyApppointment = async () => {
-    try {
-      const id = { id: idAppointment };
-      const myAppointment = await userService.getOneAppointmentById(token, id);
-      setAppointment(myAppointment);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setisLoading(false);
-    }
-  }; */
 
   return (
     <div>

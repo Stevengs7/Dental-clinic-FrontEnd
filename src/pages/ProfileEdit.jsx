@@ -84,6 +84,7 @@ export default function ProfileEdit() {
       password: data.get("password"),
       phone_number: data.get("phone_number"),
     };
+    console.log(updates);
     updateProfile(updates);
   };
 
@@ -113,7 +114,7 @@ export default function ProfileEdit() {
             fontWeight={400}
             sx={{ color: "white", m: 5 }}
           >
-            Edit my profile.
+            Edit my profile
           </Typography>
           <Box
             sx={{
