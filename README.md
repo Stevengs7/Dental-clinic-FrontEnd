@@ -42,6 +42,8 @@ Frontend de una clínica dental desarrolado en REACT. Los usuarios (Paciente, De
 
 ## Instalación en local
 
+- <a href="https://github.com/Stevengs7/Backend-ClinicaDental" target="_blank">Enlace al BackEnd<a>
+
 1. Clonar el repositorio
 2. `$ npm install`
 3. `$ npm run dev`

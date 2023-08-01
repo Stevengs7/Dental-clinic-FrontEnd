@@ -33,44 +33,6 @@ const MenuProps = {
 
 //----------------------------------------------------------------------------------------------------
 
-const names = [
-  {
-    id_dentist: 1,
-    name: "John Smith",
-  },
-  {
-    id_dentist: 2,
-    name: "Jane Doe",
-  },
-  {
-    id_dentist: 3,
-    name: "Alex Wilson",
-  },
-  {
-    id_dentist: 4,
-    name: "Sarah Jones",
-  },
-  {
-    id_dentist: 5,
-    name: "Michael Brown",
-  },
-];
-
-const times = [
-  "08:00",
-  "08:30",
-  "09:00",
-  "09:30",
-  "10:00",
-  "10:30",
-  "11:00",
-  "11:30",
-  "12:00",
-  "13:00",
-  "13:30",
-  "14:00",
-];
-
 function getNameStyles(name, personName, theme) {
   return {
     fontWeight:
@@ -89,6 +51,20 @@ function getTimeStyles(time, personTime, theme) {
   };
 }
 
+const times = [
+  "08:00",
+  "08:30",
+  "09:00",
+  "09:30",
+  "10:00",
+  "10:30",
+  "11:00",
+  "11:30",
+  "12:00",
+  "13:00",
+  "13:30",
+  "14:00",
+];
 // =============================================================================
 
 export default function CreateAppointment() {
@@ -173,7 +149,7 @@ export default function CreateAppointment() {
   return (
     <>
       <div>
-        <Typography variant="h3" align="center" fontWeight={400} sx={{ m: 15 }}>
+        <Typography variant="h4" align="center" fontWeight={300} sx={{ m: 10 }}>
           Create a new appoinment with one of our professionals
         </Typography>
         <Box
@@ -182,7 +158,7 @@ export default function CreateAppointment() {
           onSubmit={handleSubmit}
           sx={{
             backgroundColor: "white",
-            m: 10,
+            m: 5,
             mt: 5,
             p: 4,
             borderRadius: 4,
@@ -207,13 +183,13 @@ export default function CreateAppointment() {
                   input={<OutlinedInput label="Name" />}
                   MenuProps={MenuProps}
                 >
-                  {names.map((name) => (
+                  {dentist.map((dent) => (
                     <MenuItem
-                      key={name.id_dentist}
-                      value={name.id_dentist}
-                      style={getNameStyles(name, personName, theme)}
+                      key={dent.id}
+                      value={dent.id}
+                      style={getNameStyles(dentist, personName, theme)}
                     >
-                      {name.name}
+                      {dent.user.user_name}
                     </MenuItem>
                   ))}
                 </Select>

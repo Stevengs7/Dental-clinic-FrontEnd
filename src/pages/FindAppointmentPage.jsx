@@ -50,27 +50,6 @@ export default function FindAppointmentPage() {
     }
   };
 
-  /*   {
-    "id": 45,
-    "id_dentist": 2,
-    "id_patient": 16,
-    "date": "2023-11-12",
-    "time": "08:30:00",
-    "dentist": {
-        "id_specialization": 2,
-        "user": {
-            "user_name": "jane",
-            "user_last_name": "doe",
-            "email": "jane@doe.com",
-            "phone_number": "+34 678763802"
-        },
-        "specialization": {
-            "id": 2,
-            "specialization_name": "Periodontics"
-        }
-    }
-} */
-
   return (
     <div>
       <Box

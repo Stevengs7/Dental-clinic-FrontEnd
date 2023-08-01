@@ -33,29 +33,6 @@ const MenuProps = {
 
 //----------------------------------------------------------------------------------------------------
 
-const names = [
-  {
-    id_dentist: 1,
-    name: "John Smith",
-  },
-  {
-    id_dentist: 2,
-    name: "Jane Doe",
-  },
-  {
-    id_dentist: 3,
-    name: "Alex Wilson",
-  },
-  {
-    id_dentist: 4,
-    name: "Sarah Jones",
-  },
-  {
-    id_dentist: 5,
-    name: "Michael Brown",
-  },
-];
-
 const times = [
   "08:00",
   "08:30",
@@ -168,7 +145,7 @@ export default function UpdateAppointmentPage() {
   return (
     <>
       <div>
-        <Typography variant="h3" align="center" fontWeight={400} sx={{ m: 15 }}>
+        <Typography variant="h4" align="center" fontWeight={300} sx={{ m: 10 }}>
           Modify your appointment, remember to save the changes.
         </Typography>
         <Box
@@ -177,7 +154,7 @@ export default function UpdateAppointmentPage() {
           onSubmit={handleSubmit}
           sx={{
             backgroundColor: "white",
-            m: 10,
+            m: 5,
             mt: 5,
             p: 4,
             borderRadius: 4,
@@ -202,13 +179,13 @@ export default function UpdateAppointmentPage() {
                   input={<OutlinedInput label="Name" />}
                   MenuProps={MenuProps}
                 >
-                  {names.map((name) => (
+                  {dentist.map((dent) => (
                     <MenuItem
-                      key={name.id_dentist}
-                      value={name.id_dentist}
-                      style={getNameStyles(name, personName, theme)}
+                      key={dent.id}
+                      value={dent.id}
+                      style={getNameStyles(dent, personName, theme)}
                     >
-                      {name.name}
+                      {dent.user.user_name}
                     </MenuItem>
                   ))}
                 </Select>
